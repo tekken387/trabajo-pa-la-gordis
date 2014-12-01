@@ -1,0 +1,206 @@
+-- -----------------------------------------------------
+-- Table `Videoclub`.`Peliculas`
+-- -----------------------------------------------------
+
+
+CREATE TABLE Peliculas (
+  `idPeliculas` INT NOT NULL AUTO_INCREMENT,
+  `Nombre` VARCHAR(45) NULL,
+  `Precio` FLOAT NULL,
+  `Stock` INT NULL DEFAULT 0,
+  PRIMARY KEY (`idPeliculas`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Videoclub`.`Socios`
+-- -----------------------------------------------------
+
+
+CREATE TABLE Socios (
+  `idSocios` INT NOT NULL AUTO_INCREMENT,
+  `Nombre` VARCHAR(45) NULL,
+  `Dni` VARCHAR(45) NULL,
+  `CodSocio` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idSocios`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Videoclub`.`Sucursales`
+-- -----------------------------------------------------
+
+
+CREATE TABLE Sucursales (
+  `idSucursales` INT NOT NULL AUTO_INCREMENT,
+  `Direccion` VARCHAR(45) NULL,
+  PRIMARY KEY (`idSucursales`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Videoclub`.`Empleados`
+-- -----------------------------------------------------
+
+
+CREATE TABLE Empleados(
+  `idEmpleados` INT NOT NULL AUTO_INCREMENT,
+  `idSucursal` INT NOT NULL,
+  `Nombre` VARCHAR(45) NULL,
+  PRIMARY KEY (`idEmpleados`),
+  INDEX `fk1_idx` (`idSucursal` ASC),
+  CONSTRAINT `fk1`
+    FOREIGN KEY (`idSucursal`)
+    REFERENCES `Videoclub`.`Sucursales` (`idSucursales`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Videoclub`.`Compras_pelicula`
+-- -----------------------------------------------------
+
+
+CREATE TABLE Compras_pelicula (
+  `idCompras_pelicula` INT NOT NULL AUTO_INCREMENT,
+  `idEmpleado` INT NOT NULL,
+  `Fecha_compra` DATE NULL,
+  PRIMARY KEY (`idCompras_pelicula`),
+  INDEX `fk1_idx` (`idEmpleado` ASC),
+  CONSTRAINT `fk1`
+    FOREIGN KEY (`idEmpleado`)
+    REFERENCES `Videoclub`.`Empleados` (`idEmpleados`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Videoclub`.`Ventas_pelicula`
+-- -----------------------------------------------------
+
+
+CREATE TABLE Ventas_pelicula (
+  `idVentas` INT NOT NULL AUTO_INCREMENT,
+  `idCliente` INT NOT NULL,
+  `idEmpleado` INT NOT NULL,
+  `Fecha_venta` DATE NULL,
+  PRIMARY KEY (`idVentas`),
+  INDEX `fk1_idx` (`idCliente` ASC),
+  INDEX `fk2_idx` (`idEmpleado` ASC),
+  CONSTRAINT `fk1`
+    FOREIGN KEY (`idCliente`)
+    REFERENCES `Videoclub`.`Socios` (`idSocios`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk2`
+    FOREIGN KEY (`idEmpleado`)
+    REFERENCES `Videoclub`.`Empleados` (`idEmpleados`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Videoclub`.`Alquileres_pelicula`
+-- -----------------------------------------------------
+
+
+CREATE TABLE Alquileres_pelicula (
+  `idAlquileres` INT NOT NULL AUTO_INCREMENT,
+  `idCliente` INT NOT NULL,
+  `idEmpleado` INT NOT NULL,
+  `Fecha_alquiler` DATE NULL,
+  PRIMARY KEY (`idAlquileres`),
+  INDEX `fk1_idx` (`idCliente` ASC),
+  INDEX `fk2_idx` (`idEmpleado` ASC),
+  CONSTRAINT `fk1`
+    FOREIGN KEY (`idCliente`)
+    REFERENCES `Videoclub`.`Socios` (`idSocios`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk2`
+    FOREIGN KEY (`idEmpleado`)
+    REFERENCES `Videoclub`.`Empleados` (`idEmpleados`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Videoclub`.`Detalles_venta_pelicula`
+-- -----------------------------------------------------
+
+
+CREATE TABLE Detalles_venta_pelicula (
+  `idDetalles_venta_pelicula` INT NOT NULL AUTO_INCREMENT,
+  `idVenta_pelicula` INT NOT NULL,
+  `idPelicula` INT NOT NULL,
+  `Cantidad` INT NULL DEFAULT 1,
+  PRIMARY KEY (`idDetalles_venta_pelicula`),
+  INDEX `fk1_idx` (`idVenta_pelicula` ASC),
+  INDEX `fk2_idx` (`idPelicula` ASC),
+  CONSTRAINT `fk1`
+    FOREIGN KEY (`idVenta_pelicula`)
+    REFERENCES `Videoclub`.`Ventas_pelicula` (`idVentas`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk2`
+    FOREIGN KEY (`idPelicula`)
+    REFERENCES `Videoclub`.`Peliculas` (`idPeliculas`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Videoclub`.`Detalle_alquiler_pelicula`
+-- -----------------------------------------------------
+
+
+CREATE TABLE Detalle_alquiler_pelicula (
+  `idDetalle_alquiler_pelicula` INT NOT NULL AUTO_INCREMENT,
+  `idPelicula` INT NOT NULL,
+  `idAlquiler_pelicula` INT NOT NULL,
+  `Cantidad` INT NULL DEFAULT 1,
+  PRIMARY KEY (`idDetalle_alquiler_pelicula`),
+  INDEX `fk1_idx` (`idPelicula` ASC),
+  INDEX `fk2_idx` (`idAlquiler_pelicula` ASC),
+  CONSTRAINT `fk1`
+    FOREIGN KEY (`idPelicula`)
+    REFERENCES `Videoclub`.`Peliculas` (`idPeliculas`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk2`
+    FOREIGN KEY (`idAlquiler_pelicula`)
+    REFERENCES `Videoclub`.`Alquileres_pelicula` (`idAlquileres`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Videoclub`.`Detalle_compra_pelicula`
+-- -----------------------------------------------------
+
+
+CREATE TABLE Detalle_compra_pelicula (
+  `idDetalle_compra_pelicula` INT NOT NULL AUTO_INCREMENT,
+  `idPelicula` INT NOT NULL,
+  `idCompra_pelicula` INT NOT NULL,
+  `Cantidad` INT NULL,
+  PRIMARY KEY (`idDetalle_compra_pelicula`),
+  INDEX `fk1_idx` (`idPelicula` ASC),
+  INDEX `fk2_idx` (`idCompra_pelicula` ASC),
+  CONSTRAINT `fk1`
+    FOREIGN KEY (`idPelicula`)
+    REFERENCES `Videoclub`.`Peliculas` (`idPeliculas`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk2`
+    FOREIGN KEY (`idCompra_pelicula`)
+    REFERENCES `Videoclub`.`Compras_pelicula` (`idCompras_pelicula`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
