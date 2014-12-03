@@ -156,5 +156,19 @@ insert into detalles_venta_pelicula values(seq_det_venta.NEXTVAL,5,24,1);
 insert into detalles_venta_pelicula values(seq_det_venta.NEXTVAL,3,25,1);
 insert into detalles_venta_pelicula values(seq_det_venta.NEXTVAL,6,23,1);
 
+insert into detalles_alquiler_pelicula values(seq_det_alquiler.NEXTVAL,21,2,1);
+insert into detalles_alquiler_pelicula values(seq_det_alquiler.NEXTVAL,22,3,1);
+insert into detalles_alquiler_pelicula values(seq_det_alquiler.NEXTVAL,23,4,1);
+insert into detalles_alquiler_pelicula values(seq_det_alquiler.NEXTVAL,24,5,1);
+insert into detalles_alquiler_pelicula values(seq_det_alquiler.NEXTVAL,25,6,1);
+insert into detalles_alquiler_pelicula values(seq_det_alquiler.NEXTVAL,21,7,1);
+
+insert into detalles_compra_pelicula values(seq_det_compra.NEXTVAL,21,2,5);
+insert into detalles_compra_pelicula values(seq_det_compra.NEXTVAL,22,3,5);
+insert into detalles_compra_pelicula values(seq_det_compra.NEXTVAL,23,4,5);
+insert into detalles_compra_pelicula values(seq_det_compra.NEXTVAL,24,5,5);
+insert into detalles_compra_pelicula values(seq_det_compra.NEXTVAL,25,6,5);
+insert into detalles_compra_pelicula values(seq_det_compra.NEXTVAL,22,7,5);
+
 
  
