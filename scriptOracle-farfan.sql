@@ -135,6 +135,20 @@ insert into compras_pelicula values(seq_compras.NEXTVAL,2,'21/07/14');
 insert into compras_pelicula values(seq_compras.NEXTVAL,3,'16/05/14');
 insert into compras_pelicula values(seq_compras.NEXTVAL,4,sysdate);
 
+insert into ventas_pelicula values(seq_ventas.NEXTVAL,21,2,sysdate);
+insert into ventas_pelicula values(seq_ventas.NEXTVAL,22,3,'10/07/14');
+insert into ventas_pelicula values(seq_ventas.NEXTVAL,23,4,'14/10/14');
+insert into ventas_pelicula values(seq_ventas.NEXTVAL,24,2,sysdate);
+insert into ventas_pelicula values(seq_ventas.NEXTVAL,25,3,'08/09/14');
+insert into ventas_pelicula values(seq_ventas.NEXTVAL,21,2,sysdate);
+
+insert into alquileres_pelicula values(seq_alquileres.NEXTVAL,21,2,'15/01/14');
+insert into alquileres_pelicula values(seq_alquileres.NEXTVAL,22,3,'10/02/14');
+insert into alquileres_pelicula values(seq_alquileres.NEXTVAL,23,4,'01/12/14');
+insert into alquileres_pelicula values(seq_alquileres.NEXTVAL,24,2,sysdate);
+insert into alquileres_pelicula values(seq_alquileres.NEXTVAL,25,3,'27/06/14');
+insert into alquileres_pelicula values(seq_alquileres.NEXTVAL,22,4,sysdate);
+
 
 
 
