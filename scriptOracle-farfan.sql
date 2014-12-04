@@ -69,11 +69,11 @@ CREATE TABLE Detalles_compra_pelicula (
   
 create sequence seq_peliculas
 increment by 1
-start with 1;
+start with 0;
 
 create sequence seq_socios
 increment by 1
-start with 1;
+start with 0;
 
 create sequence seq_sucursales
 increment by 1
