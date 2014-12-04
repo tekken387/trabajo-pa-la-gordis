@@ -1,0 +1,75 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Página sin título</title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .style1
+        {
+            width: 115px;
+            height: 334px;
+        }
+        .style2
+        {
+            width: 115px;
+            height: 38px;
+        }
+        .style3
+        {
+            height: 38px;
+        }
+        .style4
+        {
+            height: 334px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+    
+    <table style="width:100%; height: 285px;" border="1">
+        <tr>
+            <td align="center" class="style2" 
+                style="text-decoration: underline; color: #000080">
+                MENU</td>
+            <td align="center" class="style3" 
+                style="text-decoration: underline; color: #000080">
+                VIDEOCLUB</td>
+            
+        </tr>
+        <tr>
+            <td class="style1">
+                <asp:Menu ID="Menu1" runat="server">
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/Peliculas.aspx" Text="-&gt; Peliculas" 
+                            Value="Peliculas"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/Socios.aspx" Text="-&gt; Socios" Value="Socios">
+                        </asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/Ventas.aspx" Text="-&gt; Ventas" Value="Ventas">
+                        </asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/Compras.aspx" Text="-&gt; Compras" Value="Compras">
+                        </asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/Alquileres.aspx" Text="-&gt; Alquileres" 
+                            Value="Alquileres"></asp:MenuItem>
+                    </Items>
+                </asp:Menu>
+            </td>
+            <td class="style4">
+    
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+        
+            </td>
+            
+        </tr>       
+    </table>
+    
+    </form>
+    
+</body>
+</html>
