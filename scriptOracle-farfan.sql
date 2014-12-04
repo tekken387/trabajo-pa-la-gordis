@@ -1,70 +1,70 @@
 CREATE TABLE Peliculas (
-  idPelicula INT primary key NOT NULL ,
-   Nombre VARCHAR2(30),
+  idPelicula integer primary key NOT NULL ,
+  Nombre VARCHAR2(30),
   Precio FLOAT,
   Stock INT DEFAULT 0);
   
 CREATE TABLE Socios (
-  idSocio INT NOT NULL primary key,
+  idSocio integer NOT NULL primary key,
   CodSocio VARCHAR2(30) NOT NULL,
   Nombre VARCHAR2(30),
   Dni VARCHAR2(30));
 
-CREATE TABLE Sucursales (
-  idSucursal INT NOT NULL primary key,
+CREATE TABLE Sucursales(
+  idSucursal integer NOT NULL primary key,
   Direccion VARCHAR2(30));
   
 CREATE TABLE Empleados(
-   idEmpleado  INT NOT NULL primary key,
-   idSucursal  INT NOT NULL,
+   idEmpleado  integer NOT NULL primary key,
+   idSucursal  integer NOT NULL,
    Nombre  VARCHAR2(30),
   CONSTRAINT  fkemp_suc FOREIGN KEY (idSucursal) REFERENCES Sucursales(idSucursal));
   
 CREATE TABLE Compras_pelicula(
-   idCompra_pelicula  INT NOT NULL primary key,
-   idEmpleado  INT NOT NULL,
+   idCompra  integer NOT NULL primary key,
+   idEmpleado  integer NOT NULL,
    Fecha_compra  DATE,
   CONSTRAINT  fkcomp_emp FOREIGN KEY (idEmpleado) REFERENCES Empleados(idEmpleado));
   
 CREATE TABLE Ventas_pelicula (
-   idVenta  INT NOT NULL primary key,
-   idCliente  INT NOT NULL,
-   idEmpleado  INT NOT NULL,
+   idVenta  integer NOT NULL primary key,
+   idSocio  integer NOT NULL,
+   idEmpleado  integer NOT NULL,
    Fecha_venta  DATE,
-  CONSTRAINT fkventp_soc FOREIGN KEY (idCliente) REFERENCES Socios(idSocio),
+  CONSTRAINT fkventp_soc FOREIGN KEY (idSocio) REFERENCES Socios(idSocio),
   CONSTRAINT fkventp_emp FOREIGN KEY (idEmpleado) REFERENCES Empleados(idEmpleado));
   
 CREATE TABLE Alquileres_pelicula (
-   idAlquilere  INT NOT NULL primary key,
-   idCliente  INT NOT NULL,
-   idEmpleado  INT NOT NULL,
+   idAlquiler  integer NOT NULL primary key,
+   idSocio  integer NOT NULL,
+   idEmpleado  integer NOT NULL,
    Fecha_alquiler  DATE,
-  CONSTRAINT fkalqp_soc FOREIGN KEY (idCliente) REFERENCES Socios(idSocio),
+  CONSTRAINT fkalqp_soc FOREIGN KEY (idSocio) REFERENCES Socios(idSocio),
   CONSTRAINT fkalqp_emp FOREIGN KEY (idEmpleado) REFERENCES Empleados(idEmpleado));
   
 CREATE TABLE Detalles_venta_pelicula (
-   idDetalle_venta_pelicula  INT NOT NULL primary key,
-   idVenta_pelicula  INT NOT NULL,
-   idPelicula  INT NOT NULL,
-   Cantidad  INT DEFAULT 1,
-  CONSTRAINT fkdvp_vp FOREIGN KEY (idVenta_pelicula) REFERENCES Ventas_pelicula(idVenta),
+   idDetalle_venta_pelicula  integer NOT NULL primary key,
+   idVenta  integer NOT NULL,
+   idPelicula  integer NOT NULL,
+   Cantidad  integer DEFAULT 1,
+  CONSTRAINT fkdvp_vp FOREIGN KEY (idVenta) REFERENCES Ventas_pelicula(idVenta),
   CONSTRAINT fkdvp_pe FOREIGN KEY (idPelicula) REFERENCES Peliculas(idPelicula));
 
 CREATE TABLE Detalles_alquiler_pelicula (
-   idDetalle_alquiler_pelicula  INT NOT NULL primary key,
-   idPelicula  INT NOT NULL,
-   idAlquiler_pelicula  INT NOT NULL,
-   Cantidad  INT DEFAULT 1,
+   idDetalle_alquiler_pelicula  integer NOT NULL primary key,
+   idAlquiler  integer NOT NULL,
+   idPelicula  integer NOT NULL,
+   Cantidad  integer DEFAULT 1,
   CONSTRAINT fkdap_pe FOREIGN KEY (idPelicula) REFERENCES Peliculas(idPelicula),
-  CONSTRAINT fkdap_alqp  FOREIGN KEY (idAlquiler_pelicula) REFERENCES Alquileres_pelicula(idAlquilere));
+  CONSTRAINT fkdap_alqp  FOREIGN KEY (idAlquiler) REFERENCES Alquileres_pelicula(idAlquiler));
   
 CREATE TABLE Detalles_compra_pelicula (
-   idDetalle_compra_pelicula  INT NOT NULL primary key,
-   idPelicula  INT NOT NULL,
-   idCompra_pelicula  INT NOT NULL,
-   Cantidad  INT DEFAULT 1,
+   idDetalle_compra_pelicula  integer NOT NULL primary key,
+   idCompra  integer NOT NULL,
+   idPelicula  integer NOT NULL,
+   Cantidad  integer DEFAULT 1,
   CONSTRAINT fkdcp_pe FOREIGN KEY (idPelicula) REFERENCES Peliculas(idPelicula),
-  CONSTRAINT fkdcp_comp FOREIGN KEY (idCompra_pelicula) REFERENCES Compras_pelicula(idCompra_pelicula));
+  CONSTRAINT fkdcp_comp FOREIGN KEY (idCompra) REFERENCES Compras_pelicula(idCompra));
   
   
 create sequence seq_peliculas
@@ -77,35 +77,35 @@ start with 1;
 
 create sequence seq_sucursales
 increment by 1
-start with 1;
+start with 0;
 
 create sequence seq_empleados
 increment by 1
-start with 1;
+start with 0;
 
 create sequence seq_compras
 increment by 1
-start with 1;
+start with 0;
 
 create sequence seq_ventas
 increment by 1
-start with 1;
+start with 0;
 
 create sequence seq_alquileres
 increment by 1
-start with 1;
+start with 0;
 
 create sequence seq_det_venta
 increment by 1
-start with 1;
+start with 0;
 
 create sequence seq_det_alquiler
 increment by 1
-start with 1;
+start with 0;
 
 create sequence seq_det_compra
 increment by 1
-start with 1;
+start with 0;
 
 
 insert into peliculas values(seq_peliculas.NEXTVAL,'SAW',25.50,5);
