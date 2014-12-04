@@ -11,7 +11,7 @@
         .style1
         {
             width: 115px;
-            height: 334px;
+            height: 342px;
         }
         .style2
         {
@@ -24,14 +24,14 @@
         }
         .style4
         {
-            height: 334px;
+            height: 342px;
         }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
     
-    <table style="width:100%; height: 285px;" border="1">
+    <table style="width:100%; height: 600px;" border="1">
         <tr>
             <td align="center" class="style2" 
                 style="text-decoration: underline; color: #000080">

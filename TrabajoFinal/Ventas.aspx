@@ -4,6 +4,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <p style="text-decoration: underline; color: #000080">
-        VENTAS</p>
+    VENTAS</p>
 </asp:Content>
 

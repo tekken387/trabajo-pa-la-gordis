@@ -4,8 +4,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <p style="text-decoration: underline; color: #000080">
-        ALQUILERES</p>
-    <p style="text-decoration: underline; color: #000080">
-        &nbsp;</p>
+    ALQUILERES</p>
+<p style="text-decoration: underline; color: #000080">
+    &nbsp;</p>
 </asp:Content>
 

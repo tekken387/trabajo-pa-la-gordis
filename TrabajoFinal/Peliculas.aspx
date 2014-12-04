@@ -16,9 +16,25 @@
 &nbsp;<asp:Button ID="Button1" runat="server" Text="Consultar Todas" 
         Width="125px" />
 </p>
-<p style="color: #000080;">
-    &nbsp;</p>
-<p style="color: #000080; text-decoration: underline;">
-    &nbsp;</p>
+<asp:Button ID="Button3" runat="server" Text="Agregar" />
+<asp:Button ID="Button4" runat="server" Text="Editar" />
+<asp:Button ID="Button5" runat="server" Text="Eliminar" />
+<br />
+<br />
+    <br />
+<asp:Label ID="Label1" runat="server" Text="Nombre"></asp:Label>
+<asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+    <br />
+    <asp:Label ID="Label2" runat="server" Text="Precio"></asp:Label>
+&nbsp;&nbsp;
+    <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+<br />
+    <asp:Label ID="Label3" runat="server" Text="Stock"></asp:Label>
+&nbsp;&nbsp;&nbsp;
+    <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
+    <br />
+    <br />
+    <asp:Button ID="Button6" runat="server" Text="Guardar" />
+    <br />
 </asp:Content>
 
