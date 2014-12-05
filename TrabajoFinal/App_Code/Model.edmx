@@ -1,0 +1,749 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="VideoclubModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="VideoclubModelStoreContainer">
+          <EntitySet Name="Alquileres_pelicula" EntityType="VideoclubModel.Store.Alquileres_pelicula" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Compras_pelicula" EntityType="VideoclubModel.Store.Compras_pelicula" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Detalles_alquiler_pelicula" EntityType="VideoclubModel.Store.Detalles_alquiler_pelicula" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Detalles_compra_pelicula" EntityType="VideoclubModel.Store.Detalles_compra_pelicula" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Detalles_venta_pelicula" EntityType="VideoclubModel.Store.Detalles_venta_pelicula" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Empleados" EntityType="VideoclubModel.Store.Empleados" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Peliculas" EntityType="VideoclubModel.Store.Peliculas" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Socios" EntityType="VideoclubModel.Store.Socios" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Sucursales" EntityType="VideoclubModel.Store.Sucursales" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="VideoclubModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Ventas_pelicula" EntityType="VideoclubModel.Store.Ventas_pelicula" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="fkalqp_emp" Association="VideoclubModel.Store.fkalqp_emp">
+            <End Role="Empleados" EntitySet="Empleados" />
+            <End Role="Alquileres_pelicula" EntitySet="Alquileres_pelicula" />
+          </AssociationSet>
+          <AssociationSet Name="fkalqp_soc" Association="VideoclubModel.Store.fkalqp_soc">
+            <End Role="Socios" EntitySet="Socios" />
+            <End Role="Alquileres_pelicula" EntitySet="Alquileres_pelicula" />
+          </AssociationSet>
+          <AssociationSet Name="fkcomp_emp" Association="VideoclubModel.Store.fkcomp_emp">
+            <End Role="Empleados" EntitySet="Empleados" />
+            <End Role="Compras_pelicula" EntitySet="Compras_pelicula" />
+          </AssociationSet>
+          <AssociationSet Name="fkdap_alqp" Association="VideoclubModel.Store.fkdap_alqp">
+            <End Role="Alquileres_pelicula" EntitySet="Alquileres_pelicula" />
+            <End Role="Detalles_alquiler_pelicula" EntitySet="Detalles_alquiler_pelicula" />
+          </AssociationSet>
+          <AssociationSet Name="fkdap_pe" Association="VideoclubModel.Store.fkdap_pe">
+            <End Role="Peliculas" EntitySet="Peliculas" />
+            <End Role="Detalles_alquiler_pelicula" EntitySet="Detalles_alquiler_pelicula" />
+          </AssociationSet>
+          <AssociationSet Name="fkdcp_comp" Association="VideoclubModel.Store.fkdcp_comp">
+            <End Role="Compras_pelicula" EntitySet="Compras_pelicula" />
+            <End Role="Detalles_compra_pelicula" EntitySet="Detalles_compra_pelicula" />
+          </AssociationSet>
+          <AssociationSet Name="fkdcp_pe" Association="VideoclubModel.Store.fkdcp_pe">
+            <End Role="Peliculas" EntitySet="Peliculas" />
+            <End Role="Detalles_compra_pelicula" EntitySet="Detalles_compra_pelicula" />
+          </AssociationSet>
+          <AssociationSet Name="fkdvp_pe" Association="VideoclubModel.Store.fkdvp_pe">
+            <End Role="Peliculas" EntitySet="Peliculas" />
+            <End Role="Detalles_venta_pelicula" EntitySet="Detalles_venta_pelicula" />
+          </AssociationSet>
+          <AssociationSet Name="fkdvp_vp" Association="VideoclubModel.Store.fkdvp_vp">
+            <End Role="Ventas_pelicula" EntitySet="Ventas_pelicula" />
+            <End Role="Detalles_venta_pelicula" EntitySet="Detalles_venta_pelicula" />
+          </AssociationSet>
+          <AssociationSet Name="fkemp_suc" Association="VideoclubModel.Store.fkemp_suc">
+            <End Role="Sucursales" EntitySet="Sucursales" />
+            <End Role="Empleados" EntitySet="Empleados" />
+          </AssociationSet>
+          <AssociationSet Name="fkventp_emp" Association="VideoclubModel.Store.fkventp_emp">
+            <End Role="Empleados" EntitySet="Empleados" />
+            <End Role="Ventas_pelicula" EntitySet="Ventas_pelicula" />
+          </AssociationSet>
+          <AssociationSet Name="fkventp_soc" Association="VideoclubModel.Store.fkventp_soc">
+            <End Role="Socios" EntitySet="Socios" />
+            <End Role="Ventas_pelicula" EntitySet="Ventas_pelicula" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Alquileres_pelicula">
+          <Key>
+            <PropertyRef Name="idAlquiler" />
+          </Key>
+          <Property Name="idAlquiler" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idSocio" Type="int" Nullable="false" />
+          <Property Name="idEmpleado" Type="int" Nullable="false" />
+          <Property Name="Fecha_alquiler" Type="date" />
+        </EntityType>
+        <EntityType Name="Compras_pelicula">
+          <Key>
+            <PropertyRef Name="idCompra" />
+          </Key>
+          <Property Name="idCompra" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idEmpleado" Type="int" Nullable="false" />
+          <Property Name="Fecha_compra" Type="date" />
+        </EntityType>
+        <EntityType Name="Detalles_alquiler_pelicula">
+          <Key>
+            <PropertyRef Name="idDetalle_alquiler_pelicula" />
+          </Key>
+          <Property Name="idDetalle_alquiler_pelicula" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idAlquiler" Type="int" Nullable="false" />
+          <Property Name="idPelicula" Type="int" Nullable="false" />
+          <Property Name="Cantidad" Type="int" />
+        </EntityType>
+        <EntityType Name="Detalles_compra_pelicula">
+          <Key>
+            <PropertyRef Name="idDetalle_compra_pelicula" />
+          </Key>
+          <Property Name="idDetalle_compra_pelicula" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idCompra" Type="int" Nullable="false" />
+          <Property Name="idPelicula" Type="int" Nullable="false" />
+          <Property Name="Cantidad" Type="int" />
+        </EntityType>
+        <EntityType Name="Detalles_venta_pelicula">
+          <Key>
+            <PropertyRef Name="idDetalle_venta_pelicula" />
+          </Key>
+          <Property Name="idDetalle_venta_pelicula" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idVenta" Type="int" Nullable="false" />
+          <Property Name="idPelicula" Type="int" Nullable="false" />
+          <Property Name="Cantidad" Type="int" />
+        </EntityType>
+        <EntityType Name="Empleados">
+          <Key>
+            <PropertyRef Name="idEmpleado" />
+          </Key>
+          <Property Name="idEmpleado" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idSucursal" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Peliculas">
+          <Key>
+            <PropertyRef Name="idPelicula" />
+          </Key>
+          <Property Name="idPelicula" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="varchar" MaxLength="30" />
+          <Property Name="Precio" Type="float" />
+          <Property Name="Stock" Type="int" />
+        </EntityType>
+        <EntityType Name="Socios">
+          <Key>
+            <PropertyRef Name="idSocio" />
+          </Key>
+          <Property Name="idSocio" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CodSocio" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="Nombre" Type="varchar" MaxLength="30" />
+          <Property Name="Dni" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Sucursales">
+          <Key>
+            <PropertyRef Name="idSucursal" />
+          </Key>
+          <Property Name="idSucursal" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Direccion" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Ventas_pelicula">
+          <Key>
+            <PropertyRef Name="idVenta" />
+          </Key>
+          <Property Name="idVenta" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idSocio" Type="int" Nullable="false" />
+          <Property Name="idEmpleado" Type="int" Nullable="false" />
+          <Property Name="Fecha_venta" Type="date" />
+        </EntityType>
+        <Association Name="fkalqp_emp">
+          <End Role="Empleados" Type="VideoclubModel.Store.Empleados" Multiplicity="1" />
+          <End Role="Alquileres_pelicula" Type="VideoclubModel.Store.Alquileres_pelicula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleados">
+              <PropertyRef Name="idEmpleado" />
+            </Principal>
+            <Dependent Role="Alquileres_pelicula">
+              <PropertyRef Name="idEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkalqp_soc">
+          <End Role="Socios" Type="VideoclubModel.Store.Socios" Multiplicity="1" />
+          <End Role="Alquileres_pelicula" Type="VideoclubModel.Store.Alquileres_pelicula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Socios">
+              <PropertyRef Name="idSocio" />
+            </Principal>
+            <Dependent Role="Alquileres_pelicula">
+              <PropertyRef Name="idSocio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkcomp_emp">
+          <End Role="Empleados" Type="VideoclubModel.Store.Empleados" Multiplicity="1" />
+          <End Role="Compras_pelicula" Type="VideoclubModel.Store.Compras_pelicula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleados">
+              <PropertyRef Name="idEmpleado" />
+            </Principal>
+            <Dependent Role="Compras_pelicula">
+              <PropertyRef Name="idEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkdap_alqp">
+          <End Role="Alquileres_pelicula" Type="VideoclubModel.Store.Alquileres_pelicula" Multiplicity="1" />
+          <End Role="Detalles_alquiler_pelicula" Type="VideoclubModel.Store.Detalles_alquiler_pelicula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alquileres_pelicula">
+              <PropertyRef Name="idAlquiler" />
+            </Principal>
+            <Dependent Role="Detalles_alquiler_pelicula">
+              <PropertyRef Name="idAlquiler" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkdap_pe">
+          <End Role="Peliculas" Type="VideoclubModel.Store.Peliculas" Multiplicity="1" />
+          <End Role="Detalles_alquiler_pelicula" Type="VideoclubModel.Store.Detalles_alquiler_pelicula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Peliculas">
+              <PropertyRef Name="idPelicula" />
+            </Principal>
+            <Dependent Role="Detalles_alquiler_pelicula">
+              <PropertyRef Name="idPelicula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkdcp_comp">
+          <End Role="Compras_pelicula" Type="VideoclubModel.Store.Compras_pelicula" Multiplicity="1" />
+          <End Role="Detalles_compra_pelicula" Type="VideoclubModel.Store.Detalles_compra_pelicula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Compras_pelicula">
+              <PropertyRef Name="idCompra" />
+            </Principal>
+            <Dependent Role="Detalles_compra_pelicula">
+              <PropertyRef Name="idCompra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkdcp_pe">
+          <End Role="Peliculas" Type="VideoclubModel.Store.Peliculas" Multiplicity="1" />
+          <End Role="Detalles_compra_pelicula" Type="VideoclubModel.Store.Detalles_compra_pelicula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Peliculas">
+              <PropertyRef Name="idPelicula" />
+            </Principal>
+            <Dependent Role="Detalles_compra_pelicula">
+              <PropertyRef Name="idPelicula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkdvp_pe">
+          <End Role="Peliculas" Type="VideoclubModel.Store.Peliculas" Multiplicity="1" />
+          <End Role="Detalles_venta_pelicula" Type="VideoclubModel.Store.Detalles_venta_pelicula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Peliculas">
+              <PropertyRef Name="idPelicula" />
+            </Principal>
+            <Dependent Role="Detalles_venta_pelicula">
+              <PropertyRef Name="idPelicula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkdvp_vp">
+          <End Role="Ventas_pelicula" Type="VideoclubModel.Store.Ventas_pelicula" Multiplicity="1" />
+          <End Role="Detalles_venta_pelicula" Type="VideoclubModel.Store.Detalles_venta_pelicula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ventas_pelicula">
+              <PropertyRef Name="idVenta" />
+            </Principal>
+            <Dependent Role="Detalles_venta_pelicula">
+              <PropertyRef Name="idVenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkemp_suc">
+          <End Role="Sucursales" Type="VideoclubModel.Store.Sucursales" Multiplicity="1" />
+          <End Role="Empleados" Type="VideoclubModel.Store.Empleados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursales">
+              <PropertyRef Name="idSucursal" />
+            </Principal>
+            <Dependent Role="Empleados">
+              <PropertyRef Name="idSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkventp_emp">
+          <End Role="Empleados" Type="VideoclubModel.Store.Empleados" Multiplicity="1" />
+          <End Role="Ventas_pelicula" Type="VideoclubModel.Store.Ventas_pelicula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleados">
+              <PropertyRef Name="idEmpleado" />
+            </Principal>
+            <Dependent Role="Ventas_pelicula">
+              <PropertyRef Name="idEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkventp_soc">
+          <End Role="Socios" Type="VideoclubModel.Store.Socios" Multiplicity="1" />
+          <End Role="Ventas_pelicula" Type="VideoclubModel.Store.Ventas_pelicula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Socios">
+              <PropertyRef Name="idSocio" />
+            </Principal>
+            <Dependent Role="Ventas_pelicula">
+              <PropertyRef Name="idSocio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VideoclubModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="VideoclubEntities">
+          <EntitySet Name="Alquileres_pelicula" EntityType="VideoclubModel.Alquileres_pelicula" />
+          <EntitySet Name="Compras_pelicula" EntityType="VideoclubModel.Compras_pelicula" />
+          <EntitySet Name="Detalles_alquiler_pelicula" EntityType="VideoclubModel.Detalles_alquiler_pelicula" />
+          <EntitySet Name="Detalles_compra_pelicula" EntityType="VideoclubModel.Detalles_compra_pelicula" />
+          <EntitySet Name="Detalles_venta_pelicula" EntityType="VideoclubModel.Detalles_venta_pelicula" />
+          <EntitySet Name="Empleados" EntityType="VideoclubModel.Empleados" />
+          <EntitySet Name="Peliculas" EntityType="VideoclubModel.Peliculas" />
+          <EntitySet Name="Socios" EntityType="VideoclubModel.Socios" />
+          <EntitySet Name="Sucursales" EntityType="VideoclubModel.Sucursales" />
+          <EntitySet Name="sysdiagrams" EntityType="VideoclubModel.sysdiagrams" />
+          <EntitySet Name="Ventas_pelicula" EntityType="VideoclubModel.Ventas_pelicula" />
+          <AssociationSet Name="fkalqp_emp" Association="VideoclubModel.fkalqp_emp">
+            <End Role="Empleados" EntitySet="Empleados" />
+            <End Role="Alquileres_pelicula" EntitySet="Alquileres_pelicula" />
+          </AssociationSet>
+          <AssociationSet Name="fkalqp_soc" Association="VideoclubModel.fkalqp_soc">
+            <End Role="Socios" EntitySet="Socios" />
+            <End Role="Alquileres_pelicula" EntitySet="Alquileres_pelicula" />
+          </AssociationSet>
+          <AssociationSet Name="fkdap_alqp" Association="VideoclubModel.fkdap_alqp">
+            <End Role="Alquileres_pelicula" EntitySet="Alquileres_pelicula" />
+            <End Role="Detalles_alquiler_pelicula" EntitySet="Detalles_alquiler_pelicula" />
+          </AssociationSet>
+          <AssociationSet Name="fkcomp_emp" Association="VideoclubModel.fkcomp_emp">
+            <End Role="Empleados" EntitySet="Empleados" />
+            <End Role="Compras_pelicula" EntitySet="Compras_pelicula" />
+          </AssociationSet>
+          <AssociationSet Name="fkdcp_comp" Association="VideoclubModel.fkdcp_comp">
+            <End Role="Compras_pelicula" EntitySet="Compras_pelicula" />
+            <End Role="Detalles_compra_pelicula" EntitySet="Detalles_compra_pelicula" />
+          </AssociationSet>
+          <AssociationSet Name="fkdap_pe" Association="VideoclubModel.fkdap_pe">
+            <End Role="Peliculas" EntitySet="Peliculas" />
+            <End Role="Detalles_alquiler_pelicula" EntitySet="Detalles_alquiler_pelicula" />
+          </AssociationSet>
+          <AssociationSet Name="fkdcp_pe" Association="VideoclubModel.fkdcp_pe">
+            <End Role="Peliculas" EntitySet="Peliculas" />
+            <End Role="Detalles_compra_pelicula" EntitySet="Detalles_compra_pelicula" />
+          </AssociationSet>
+          <AssociationSet Name="fkdvp_pe" Association="VideoclubModel.fkdvp_pe">
+            <End Role="Peliculas" EntitySet="Peliculas" />
+            <End Role="Detalles_venta_pelicula" EntitySet="Detalles_venta_pelicula" />
+          </AssociationSet>
+          <AssociationSet Name="fkdvp_vp" Association="VideoclubModel.fkdvp_vp">
+            <End Role="Ventas_pelicula" EntitySet="Ventas_pelicula" />
+            <End Role="Detalles_venta_pelicula" EntitySet="Detalles_venta_pelicula" />
+          </AssociationSet>
+          <AssociationSet Name="fkemp_suc" Association="VideoclubModel.fkemp_suc">
+            <End Role="Sucursales" EntitySet="Sucursales" />
+            <End Role="Empleados" EntitySet="Empleados" />
+          </AssociationSet>
+          <AssociationSet Name="fkventp_emp" Association="VideoclubModel.fkventp_emp">
+            <End Role="Empleados" EntitySet="Empleados" />
+            <End Role="Ventas_pelicula" EntitySet="Ventas_pelicula" />
+          </AssociationSet>
+          <AssociationSet Name="fkventp_soc" Association="VideoclubModel.fkventp_soc">
+            <End Role="Socios" EntitySet="Socios" />
+            <End Role="Ventas_pelicula" EntitySet="Ventas_pelicula" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Alquileres_pelicula">
+          <Key>
+            <PropertyRef Name="idAlquiler" />
+          </Key>
+          <Property Name="idAlquiler" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha_alquiler" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Empleados" Relationship="VideoclubModel.fkalqp_emp" FromRole="Alquileres_pelicula" ToRole="Empleados" />
+          <NavigationProperty Name="Socios" Relationship="VideoclubModel.fkalqp_soc" FromRole="Alquileres_pelicula" ToRole="Socios" />
+          <NavigationProperty Name="Detalles_alquiler_pelicula" Relationship="VideoclubModel.fkdap_alqp" FromRole="Alquileres_pelicula" ToRole="Detalles_alquiler_pelicula" />
+        </EntityType>
+        <EntityType Name="Compras_pelicula">
+          <Key>
+            <PropertyRef Name="idCompra" />
+          </Key>
+          <Property Name="idCompra" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha_compra" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Empleados" Relationship="VideoclubModel.fkcomp_emp" FromRole="Compras_pelicula" ToRole="Empleados" />
+          <NavigationProperty Name="Detalles_compra_pelicula" Relationship="VideoclubModel.fkdcp_comp" FromRole="Compras_pelicula" ToRole="Detalles_compra_pelicula" />
+        </EntityType>
+        <EntityType Name="Detalles_alquiler_pelicula">
+          <Key>
+            <PropertyRef Name="idDetalle_alquiler_pelicula" />
+          </Key>
+          <Property Name="idDetalle_alquiler_pelicula" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cantidad" Type="Int32" />
+          <NavigationProperty Name="Alquileres_pelicula" Relationship="VideoclubModel.fkdap_alqp" FromRole="Detalles_alquiler_pelicula" ToRole="Alquileres_pelicula" />
+          <NavigationProperty Name="Peliculas" Relationship="VideoclubModel.fkdap_pe" FromRole="Detalles_alquiler_pelicula" ToRole="Peliculas" />
+        </EntityType>
+        <EntityType Name="Detalles_compra_pelicula">
+          <Key>
+            <PropertyRef Name="idDetalle_compra_pelicula" />
+          </Key>
+          <Property Name="idDetalle_compra_pelicula" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cantidad" Type="Int32" />
+          <NavigationProperty Name="Compras_pelicula" Relationship="VideoclubModel.fkdcp_comp" FromRole="Detalles_compra_pelicula" ToRole="Compras_pelicula" />
+          <NavigationProperty Name="Peliculas" Relationship="VideoclubModel.fkdcp_pe" FromRole="Detalles_compra_pelicula" ToRole="Peliculas" />
+        </EntityType>
+        <EntityType Name="Detalles_venta_pelicula">
+          <Key>
+            <PropertyRef Name="idDetalle_venta_pelicula" />
+          </Key>
+          <Property Name="idDetalle_venta_pelicula" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cantidad" Type="Int32" />
+          <NavigationProperty Name="Peliculas" Relationship="VideoclubModel.fkdvp_pe" FromRole="Detalles_venta_pelicula" ToRole="Peliculas" />
+          <NavigationProperty Name="Ventas_pelicula" Relationship="VideoclubModel.fkdvp_vp" FromRole="Detalles_venta_pelicula" ToRole="Ventas_pelicula" />
+        </EntityType>
+        <EntityType Name="Empleados">
+          <Key>
+            <PropertyRef Name="idEmpleado" />
+          </Key>
+          <Property Name="idEmpleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Alquileres_pelicula" Relationship="VideoclubModel.fkalqp_emp" FromRole="Empleados" ToRole="Alquileres_pelicula" />
+          <NavigationProperty Name="Compras_pelicula" Relationship="VideoclubModel.fkcomp_emp" FromRole="Empleados" ToRole="Compras_pelicula" />
+          <NavigationProperty Name="Sucursales" Relationship="VideoclubModel.fkemp_suc" FromRole="Empleados" ToRole="Sucursales" />
+          <NavigationProperty Name="Ventas_pelicula" Relationship="VideoclubModel.fkventp_emp" FromRole="Empleados" ToRole="Ventas_pelicula" />
+        </EntityType>
+        <EntityType Name="Peliculas">
+          <Key>
+            <PropertyRef Name="idPelicula" />
+          </Key>
+          <Property Name="idPelicula" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="Precio" Type="Double" />
+          <Property Name="Stock" Type="Int32" />
+          <NavigationProperty Name="Detalles_alquiler_pelicula" Relationship="VideoclubModel.fkdap_pe" FromRole="Peliculas" ToRole="Detalles_alquiler_pelicula" />
+          <NavigationProperty Name="Detalles_compra_pelicula" Relationship="VideoclubModel.fkdcp_pe" FromRole="Peliculas" ToRole="Detalles_compra_pelicula" />
+          <NavigationProperty Name="Detalles_venta_pelicula" Relationship="VideoclubModel.fkdvp_pe" FromRole="Peliculas" ToRole="Detalles_venta_pelicula" />
+        </EntityType>
+        <EntityType Name="Socios">
+          <Key>
+            <PropertyRef Name="idSocio" />
+          </Key>
+          <Property Name="idSocio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodSocio" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="Nombre" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="Dni" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Alquileres_pelicula" Relationship="VideoclubModel.fkalqp_soc" FromRole="Socios" ToRole="Alquileres_pelicula" />
+          <NavigationProperty Name="Ventas_pelicula" Relationship="VideoclubModel.fkventp_soc" FromRole="Socios" ToRole="Ventas_pelicula" />
+        </EntityType>
+        <EntityType Name="Sucursales">
+          <Key>
+            <PropertyRef Name="idSucursal" />
+          </Key>
+          <Property Name="idSucursal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Direccion" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Empleados" Relationship="VideoclubModel.fkemp_suc" FromRole="Sucursales" ToRole="Empleados" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Ventas_pelicula">
+          <Key>
+            <PropertyRef Name="idVenta" />
+          </Key>
+          <Property Name="idVenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha_venta" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Detalles_venta_pelicula" Relationship="VideoclubModel.fkdvp_vp" FromRole="Ventas_pelicula" ToRole="Detalles_venta_pelicula" />
+          <NavigationProperty Name="Empleados" Relationship="VideoclubModel.fkventp_emp" FromRole="Ventas_pelicula" ToRole="Empleados" />
+          <NavigationProperty Name="Socios" Relationship="VideoclubModel.fkventp_soc" FromRole="Ventas_pelicula" ToRole="Socios" />
+        </EntityType>
+        <Association Name="fkalqp_emp">
+          <End Role="Empleados" Type="VideoclubModel.Empleados" Multiplicity="1" />
+          <End Role="Alquileres_pelicula" Type="VideoclubModel.Alquileres_pelicula" Multiplicity="*" />
+        </Association>
+        <Association Name="fkalqp_soc">
+          <End Role="Socios" Type="VideoclubModel.Socios" Multiplicity="1" />
+          <End Role="Alquileres_pelicula" Type="VideoclubModel.Alquileres_pelicula" Multiplicity="*" />
+        </Association>
+        <Association Name="fkdap_alqp">
+          <End Role="Alquileres_pelicula" Type="VideoclubModel.Alquileres_pelicula" Multiplicity="1" />
+          <End Role="Detalles_alquiler_pelicula" Type="VideoclubModel.Detalles_alquiler_pelicula" Multiplicity="*" />
+        </Association>
+        <Association Name="fkcomp_emp">
+          <End Role="Empleados" Type="VideoclubModel.Empleados" Multiplicity="1" />
+          <End Role="Compras_pelicula" Type="VideoclubModel.Compras_pelicula" Multiplicity="*" />
+        </Association>
+        <Association Name="fkdcp_comp">
+          <End Role="Compras_pelicula" Type="VideoclubModel.Compras_pelicula" Multiplicity="1" />
+          <End Role="Detalles_compra_pelicula" Type="VideoclubModel.Detalles_compra_pelicula" Multiplicity="*" />
+        </Association>
+        <Association Name="fkdap_pe">
+          <End Role="Peliculas" Type="VideoclubModel.Peliculas" Multiplicity="1" />
+          <End Role="Detalles_alquiler_pelicula" Type="VideoclubModel.Detalles_alquiler_pelicula" Multiplicity="*" />
+        </Association>
+        <Association Name="fkdcp_pe">
+          <End Role="Peliculas" Type="VideoclubModel.Peliculas" Multiplicity="1" />
+          <End Role="Detalles_compra_pelicula" Type="VideoclubModel.Detalles_compra_pelicula" Multiplicity="*" />
+        </Association>
+        <Association Name="fkdvp_pe">
+          <End Role="Peliculas" Type="VideoclubModel.Peliculas" Multiplicity="1" />
+          <End Role="Detalles_venta_pelicula" Type="VideoclubModel.Detalles_venta_pelicula" Multiplicity="*" />
+        </Association>
+        <Association Name="fkdvp_vp">
+          <End Role="Ventas_pelicula" Type="VideoclubModel.Ventas_pelicula" Multiplicity="1" />
+          <End Role="Detalles_venta_pelicula" Type="VideoclubModel.Detalles_venta_pelicula" Multiplicity="*" />
+        </Association>
+        <Association Name="fkemp_suc">
+          <End Role="Sucursales" Type="VideoclubModel.Sucursales" Multiplicity="1" />
+          <End Role="Empleados" Type="VideoclubModel.Empleados" Multiplicity="*" />
+        </Association>
+        <Association Name="fkventp_emp">
+          <End Role="Empleados" Type="VideoclubModel.Empleados" Multiplicity="1" />
+          <End Role="Ventas_pelicula" Type="VideoclubModel.Ventas_pelicula" Multiplicity="*" />
+        </Association>
+        <Association Name="fkventp_soc">
+          <End Role="Socios" Type="VideoclubModel.Socios" Multiplicity="1" />
+          <End Role="Ventas_pelicula" Type="VideoclubModel.Ventas_pelicula" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="VideoclubModelStoreContainer" CdmEntityContainer="VideoclubEntities">
+          <EntitySetMapping Name="Alquileres_pelicula">
+            <EntityTypeMapping TypeName="VideoclubModel.Alquileres_pelicula">
+              <MappingFragment StoreEntitySet="Alquileres_pelicula">
+                <ScalarProperty Name="idAlquiler" ColumnName="idAlquiler" />
+                <ScalarProperty Name="Fecha_alquiler" ColumnName="Fecha_alquiler" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Compras_pelicula">
+            <EntityTypeMapping TypeName="VideoclubModel.Compras_pelicula">
+              <MappingFragment StoreEntitySet="Compras_pelicula">
+                <ScalarProperty Name="idCompra" ColumnName="idCompra" />
+                <ScalarProperty Name="Fecha_compra" ColumnName="Fecha_compra" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detalles_alquiler_pelicula">
+            <EntityTypeMapping TypeName="VideoclubModel.Detalles_alquiler_pelicula">
+              <MappingFragment StoreEntitySet="Detalles_alquiler_pelicula">
+                <ScalarProperty Name="idDetalle_alquiler_pelicula" ColumnName="idDetalle_alquiler_pelicula" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detalles_compra_pelicula">
+            <EntityTypeMapping TypeName="VideoclubModel.Detalles_compra_pelicula">
+              <MappingFragment StoreEntitySet="Detalles_compra_pelicula">
+                <ScalarProperty Name="idDetalle_compra_pelicula" ColumnName="idDetalle_compra_pelicula" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detalles_venta_pelicula">
+            <EntityTypeMapping TypeName="VideoclubModel.Detalles_venta_pelicula">
+              <MappingFragment StoreEntitySet="Detalles_venta_pelicula">
+                <ScalarProperty Name="idDetalle_venta_pelicula" ColumnName="idDetalle_venta_pelicula" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empleados">
+            <EntityTypeMapping TypeName="VideoclubModel.Empleados">
+              <MappingFragment StoreEntitySet="Empleados">
+                <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Peliculas">
+            <EntityTypeMapping TypeName="VideoclubModel.Peliculas">
+              <MappingFragment StoreEntitySet="Peliculas">
+                <ScalarProperty Name="idPelicula" ColumnName="idPelicula" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Socios">
+            <EntityTypeMapping TypeName="VideoclubModel.Socios">
+              <MappingFragment StoreEntitySet="Socios">
+                <ScalarProperty Name="idSocio" ColumnName="idSocio" />
+                <ScalarProperty Name="CodSocio" ColumnName="CodSocio" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Dni" ColumnName="Dni" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sucursales">
+            <EntityTypeMapping TypeName="VideoclubModel.Sucursales">
+              <MappingFragment StoreEntitySet="Sucursales">
+                <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="VideoclubModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ventas_pelicula">
+            <EntityTypeMapping TypeName="VideoclubModel.Ventas_pelicula">
+              <MappingFragment StoreEntitySet="Ventas_pelicula">
+                <ScalarProperty Name="idVenta" ColumnName="idVenta" />
+                <ScalarProperty Name="Fecha_venta" ColumnName="Fecha_venta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="fkalqp_emp" TypeName="VideoclubModel.fkalqp_emp" StoreEntitySet="Alquileres_pelicula">
+            <EndProperty Name="Empleados">
+              <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
+            </EndProperty>
+            <EndProperty Name="Alquileres_pelicula">
+              <ScalarProperty Name="idAlquiler" ColumnName="idAlquiler" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="fkalqp_soc" TypeName="VideoclubModel.fkalqp_soc" StoreEntitySet="Alquileres_pelicula">
+            <EndProperty Name="Socios">
+              <ScalarProperty Name="idSocio" ColumnName="idSocio" />
+            </EndProperty>
+            <EndProperty Name="Alquileres_pelicula">
+              <ScalarProperty Name="idAlquiler" ColumnName="idAlquiler" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="fkdap_alqp" TypeName="VideoclubModel.fkdap_alqp" StoreEntitySet="Detalles_alquiler_pelicula">
+            <EndProperty Name="Alquileres_pelicula">
+              <ScalarProperty Name="idAlquiler" ColumnName="idAlquiler" />
+            </EndProperty>
+            <EndProperty Name="Detalles_alquiler_pelicula">
+              <ScalarProperty Name="idDetalle_alquiler_pelicula" ColumnName="idDetalle_alquiler_pelicula" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="fkcomp_emp" TypeName="VideoclubModel.fkcomp_emp" StoreEntitySet="Compras_pelicula">
+            <EndProperty Name="Empleados">
+              <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
+            </EndProperty>
+            <EndProperty Name="Compras_pelicula">
+              <ScalarProperty Name="idCompra" ColumnName="idCompra" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="fkdcp_comp" TypeName="VideoclubModel.fkdcp_comp" StoreEntitySet="Detalles_compra_pelicula">
+            <EndProperty Name="Compras_pelicula">
+              <ScalarProperty Name="idCompra" ColumnName="idCompra" />
+            </EndProperty>
+            <EndProperty Name="Detalles_compra_pelicula">
+              <ScalarProperty Name="idDetalle_compra_pelicula" ColumnName="idDetalle_compra_pelicula" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="fkdap_pe" TypeName="VideoclubModel.fkdap_pe" StoreEntitySet="Detalles_alquiler_pelicula">
+            <EndProperty Name="Peliculas">
+              <ScalarProperty Name="idPelicula" ColumnName="idPelicula" />
+            </EndProperty>
+            <EndProperty Name="Detalles_alquiler_pelicula">
+              <ScalarProperty Name="idDetalle_alquiler_pelicula" ColumnName="idDetalle_alquiler_pelicula" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="fkdcp_pe" TypeName="VideoclubModel.fkdcp_pe" StoreEntitySet="Detalles_compra_pelicula">
+            <EndProperty Name="Peliculas">
+              <ScalarProperty Name="idPelicula" ColumnName="idPelicula" />
+            </EndProperty>
+            <EndProperty Name="Detalles_compra_pelicula">
+              <ScalarProperty Name="idDetalle_compra_pelicula" ColumnName="idDetalle_compra_pelicula" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="fkdvp_pe" TypeName="VideoclubModel.fkdvp_pe" StoreEntitySet="Detalles_venta_pelicula">
+            <EndProperty Name="Peliculas">
+              <ScalarProperty Name="idPelicula" ColumnName="idPelicula" />
+            </EndProperty>
+            <EndProperty Name="Detalles_venta_pelicula">
+              <ScalarProperty Name="idDetalle_venta_pelicula" ColumnName="idDetalle_venta_pelicula" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="fkdvp_vp" TypeName="VideoclubModel.fkdvp_vp" StoreEntitySet="Detalles_venta_pelicula">
+            <EndProperty Name="Ventas_pelicula">
+              <ScalarProperty Name="idVenta" ColumnName="idVenta" />
+            </EndProperty>
+            <EndProperty Name="Detalles_venta_pelicula">
+              <ScalarProperty Name="idDetalle_venta_pelicula" ColumnName="idDetalle_venta_pelicula" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="fkemp_suc" TypeName="VideoclubModel.fkemp_suc" StoreEntitySet="Empleados">
+            <EndProperty Name="Sucursales">
+              <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
+            </EndProperty>
+            <EndProperty Name="Empleados">
+              <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="fkventp_emp" TypeName="VideoclubModel.fkventp_emp" StoreEntitySet="Ventas_pelicula">
+            <EndProperty Name="Empleados">
+              <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
+            </EndProperty>
+            <EndProperty Name="Ventas_pelicula">
+              <ScalarProperty Name="idVenta" ColumnName="idVenta" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="fkventp_soc" TypeName="VideoclubModel.fkventp_soc" StoreEntitySet="Ventas_pelicula">
+            <EndProperty Name="Socios">
+              <ScalarProperty Name="idSocio" ColumnName="idSocio" />
+            </EndProperty>
+            <EndProperty Name="Ventas_pelicula">
+              <ScalarProperty Name="idVenta" ColumnName="idVenta" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,133 @@
+CREATE TABLE Peliculas (
+  idPelicula int primary key identity(1,1) NOT NULL ,
+  Nombre VARCHAR(30),
+  Precio FLOAT,
+  Stock INT DEFAULT 0);
+  
+CREATE TABLE Socios (
+  idSocio int NOT NULL primary key identity(1,1),
+  CodSocio VARCHAR(30) NOT NULL,
+  Nombre VARCHAR(30),
+  Dni VARCHAR(30));
+
+CREATE TABLE Sucursales(
+  idSucursal int NOT NULL primary key identity(1,1),
+  Direccion VARCHAR(30));
+  
+CREATE TABLE Empleados(
+   idEmpleado  int NOT NULL primary key identity(1,1),
+   idSucursal  int NOT NULL,
+   Nombre  VARCHAR(30),
+  CONSTRAINT  fkemp_suc FOREIGN KEY (idSucursal) REFERENCES Sucursales(idSucursal));
+  
+CREATE TABLE Compras_pelicula(
+   idCompra  int NOT NULL primary key identity(1,1),
+   idEmpleado  int NOT NULL,
+   Fecha_compra  DATE,
+  CONSTRAINT  fkcomp_emp FOREIGN KEY (idEmpleado) REFERENCES Empleados(idEmpleado));
+  
+CREATE TABLE Ventas_pelicula (
+   idVenta  int NOT NULL primary key identity(1,1),
+   idSocio  int NOT NULL,
+   idEmpleado  int NOT NULL,
+   Fecha_venta  DATE,
+  CONSTRAINT fkventp_soc FOREIGN KEY (idSocio) REFERENCES Socios(idSocio),
+  CONSTRAINT fkventp_emp FOREIGN KEY (idEmpleado) REFERENCES Empleados(idEmpleado));
+  
+CREATE TABLE Alquileres_pelicula (
+   idAlquiler  int NOT NULL primary key identity(1,1),
+   idSocio  int NOT NULL,
+   idEmpleado  int NOT NULL,
+   Fecha_alquiler  DATE,
+  CONSTRAINT fkalqp_soc FOREIGN KEY (idSocio) REFERENCES Socios(idSocio),
+  CONSTRAINT fkalqp_emp FOREIGN KEY (idEmpleado) REFERENCES Empleados(idEmpleado));
+  
+CREATE TABLE Detalles_venta_pelicula (
+   idDetalle_venta_pelicula  int NOT NULL primary key identity(1,1),
+   idVenta  int NOT NULL,
+   idPelicula  int NOT NULL,
+   Cantidad  int DEFAULT 1,
+  CONSTRAINT fkdvp_vp FOREIGN KEY (idVenta) REFERENCES Ventas_pelicula(idVenta),
+  CONSTRAINT fkdvp_pe FOREIGN KEY (idPelicula) REFERENCES Peliculas(idPelicula));
+
+CREATE TABLE Detalles_alquiler_pelicula (
+   idDetalle_alquiler_pelicula  int NOT NULL primary key identity(1,1),
+   idAlquiler  int NOT NULL,
+   idPelicula  int NOT NULL,
+   Cantidad  int DEFAULT 1,
+  CONSTRAINT fkdap_pe FOREIGN KEY (idPelicula) REFERENCES Peliculas(idPelicula),
+  CONSTRAINT fkdap_alqp  FOREIGN KEY (idAlquiler) REFERENCES Alquileres_pelicula(idAlquiler));
+  
+CREATE TABLE Detalles_compra_pelicula (
+   idDetalle_compra_pelicula  int NOT NULL primary key identity(1,1),
+   idCompra  int NOT NULL,
+   idPelicula int NOT NULL,
+   Cantidad  int DEFAULT 1,
+  CONSTRAINT fkdcp_pe FOREIGN KEY (idPelicula) REFERENCES Peliculas(idPelicula),
+  CONSTRAINT fkdcp_comp FOREIGN KEY (idCompra) REFERENCES Compras_pelicula(idCompra));
+  
+  
+
+
+insert into peliculas values('SAW',25.50,5);
+insert into peliculas values('Dracula',30.00,5);
+insert into peliculas values('Lord of the rings',15.50,5);
+insert into peliculas values('Anabelle',50.00,5);
+insert into peliculas values('Interestelar',20.00,5);
+
+insert into socios values('35X468D','David Parra Calle','73382519');
+insert into socios values('5WRR98','Manuel Huerto Viza','58451524');
+insert into socios values('684QWE','Rafael Requena Troncos','68521478');
+insert into socios values('KYT35J','Pedro Perez Peña','95812453');
+insert into socios values('VWER54','Juan Chong Shing','02655478');
+
+insert into sucursales values('Jr. Lima 458');
+insert into sucursales values('Av. Junin 123');
+insert into sucursales values('Av. Larco 588');
+
+insert into empleados values(1,'Juana Rosales Lopez');
+insert into empleados values(2,'Pedro Espinoza Gutierrez');
+insert into empleados values(3,'Marco Aurelio Gonzales');
+
+insert into compras_pelicula values(1,getdate());
+insert into compras_pelicula values(2,'15/11/14');
+insert into compras_pelicula values(3,getdate());
+insert into compras_pelicula values(1,'21/07/14');
+insert into compras_pelicula values(2,'16/05/14');
+insert into compras_pelicula values(3,getdate());
+
+insert into ventas_pelicula values(1,1,getdate());
+insert into ventas_pelicula values(2,2,'10/07/14');
+insert into ventas_pelicula values(3,3,'14/10/14');
+insert into ventas_pelicula values(4,2,getdate());
+insert into ventas_pelicula values(5,1,'08/09/14');
+insert into ventas_pelicula values(2,3,getdate());
+
+insert into alquileres_pelicula values(1,1,'15/01/14');
+insert into alquileres_pelicula values(2,2,'10/02/14');
+insert into alquileres_pelicula values(3,3,'01/12/14');
+insert into alquileres_pelicula values(4,1,getdate());
+insert into alquileres_pelicula values(5,2,'27/06/14');
+insert into alquileres_pelicula values(2,3,getdate());
+
+insert into detalles_venta_pelicula values(1,1,1);
+insert into detalles_venta_pelicula values(2,2,1);
+insert into detalles_venta_pelicula values(3,3,1);
+insert into detalles_venta_pelicula values(4,4,1);
+insert into detalles_venta_pelicula values(5,5,1);
+insert into detalles_venta_pelicula values(6,3,1);
+
+insert into detalles_alquiler_pelicula values(1,1,1);
+insert into detalles_alquiler_pelicula values(2,2,1);
+insert into detalles_alquiler_pelicula values(3,3,1);
+insert into detalles_alquiler_pelicula values(4,4,1);
+insert into detalles_alquiler_pelicula values(5,5,1);
+insert into detalles_alquiler_pelicula values(6,2,1);
+
+insert into detalles_compra_pelicula values(1,1,5);
+insert into detalles_compra_pelicula values(2,2,5);
+insert into detalles_compra_pelicula values(3,3,5);
+insert into detalles_compra_pelicula values(4,4,5);
+insert into detalles_compra_pelicula values(5,5,5);
+insert into detalles_compra_pelicula values(6,4,5);
+
