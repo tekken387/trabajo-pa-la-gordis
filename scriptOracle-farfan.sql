@@ -156,19 +156,19 @@ insert into detalles_venta_pelicula values(seq_det_venta.NEXTVAL,4,4,1);
 insert into detalles_venta_pelicula values(seq_det_venta.NEXTVAL,5,5,1);
 insert into detalles_venta_pelicula values(seq_det_venta.NEXTVAL,6,3,1);
 
-insert into detalles_alquiler_pelicula values(seq_det_alquiler.NEXTVAL,21,2,1);
-insert into detalles_alquiler_pelicula values(seq_det_alquiler.NEXTVAL,22,3,1);
-insert into detalles_alquiler_pelicula values(seq_det_alquiler.NEXTVAL,23,4,1);
-insert into detalles_alquiler_pelicula values(seq_det_alquiler.NEXTVAL,24,5,1);
-insert into detalles_alquiler_pelicula values(seq_det_alquiler.NEXTVAL,25,6,1);
-insert into detalles_alquiler_pelicula values(seq_det_alquiler.NEXTVAL,21,7,1);
+insert into detalles_alquiler_pelicula values(seq_det_alquiler.NEXTVAL,1,1,1);
+insert into detalles_alquiler_pelicula values(seq_det_alquiler.NEXTVAL,2,2,1);
+insert into detalles_alquiler_pelicula values(seq_det_alquiler.NEXTVAL,3,3,1);
+insert into detalles_alquiler_pelicula values(seq_det_alquiler.NEXTVAL,4,4,1);
+insert into detalles_alquiler_pelicula values(seq_det_alquiler.NEXTVAL,5,5,1);
+insert into detalles_alquiler_pelicula values(seq_det_alquiler.NEXTVAL,6,2,1);
 
-insert into detalles_compra_pelicula values(seq_det_compra.NEXTVAL,21,2,5);
-insert into detalles_compra_pelicula values(seq_det_compra.NEXTVAL,22,3,5);
-insert into detalles_compra_pelicula values(seq_det_compra.NEXTVAL,23,4,5);
-insert into detalles_compra_pelicula values(seq_det_compra.NEXTVAL,24,5,5);
-insert into detalles_compra_pelicula values(seq_det_compra.NEXTVAL,25,6,5);
-insert into detalles_compra_pelicula values(seq_det_compra.NEXTVAL,22,7,5);
+insert into detalles_compra_pelicula values(seq_det_compra.NEXTVAL,1,1,5);
+insert into detalles_compra_pelicula values(seq_det_compra.NEXTVAL,2,2,5);
+insert into detalles_compra_pelicula values(seq_det_compra.NEXTVAL,3,3,5);
+insert into detalles_compra_pelicula values(seq_det_compra.NEXTVAL,4,4,5);
+insert into detalles_compra_pelicula values(seq_det_compra.NEXTVAL,5,5,5);
+insert into detalles_compra_pelicula values(seq_det_compra.NEXTVAL,6,4,5);
 
 
  
