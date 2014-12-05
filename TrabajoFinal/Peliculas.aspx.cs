@@ -10,9 +10,12 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
+using VideoclubModel;
 
 public partial class Peliculas : System.Web.UI.Page
 {
+    VideoclubEntities vc = new VideoclubEntities();
+    
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -24,5 +27,64 @@ public partial class Peliculas : System.Web.UI.Page
         TextBox4.Enabled = true;
         Button6.Enabled = true;
 
+    }
+    protected void Button6_Click(object sender, EventArgs e)
+    {
+        string nombre = TextBox2.Text;
+        float precio = float.Parse(TextBox3.Text);
+        int stock = int.Parse(TextBox4.Text);
+        VideoclubModel.Peliculas p =new VideoclubModel.Peliculas();
+        p.Nombre = nombre;
+        p.Precio = precio;
+        p.Stock = stock;
+
+        vc.AddToPeliculas(p);
+        vc.SaveChanges();
+
+        TextBox2.Enabled = false;
+        TextBox3.Enabled = false;
+        TextBox4.Enabled = false;
+        Button6.Enabled = false;
+
+
+
+        cargar_list();
+        limpiar_cajas();
+        
+    }
+
+    public void cargar_list()
+    {
+        var x = from pelis in vc.Peliculas
+                select new {pelis.idPelicula,pelis.Nombre,pelis.Precio };
+
+        ListBox1.DataSource = x;
+        ListBox1.DataTextField = "Nombre";
+        ListBox1.DataValueField = "idPelicula";
+        ListBox1.DataBind();
+    }
+
+    public void limpiar_cajas()
+    {
+        TextBox2.Text = "";
+        TextBox3.Text = "";
+        TextBox4.Text = "";
+        Button6.Text = "";
+    }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        cargar_list();
+       
+    }
+    protected void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        int id = int.Parse(ListBox1.SelectedValue);
+
+        var x = from p1 in vc.Peliculas
+                      where p1.idPelicula.Equals(id)
+                      select p1;
+        
+        TextBox2.Text=x.i
     }
 }

@@ -11,10 +11,10 @@
     <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
 </p>
 <p style="color: #000080;">
-    <asp:ListBox ID="ListBox1" runat="server" Height="87px" Width="183px">
+    <asp:ListBox ID="ListBox1" runat="server" Height="114px" Width="313px" OnSelectedIndexChanged="ListBox1_SelectedIndexChanged">
     </asp:ListBox>
 &nbsp;<asp:Button ID="Button1" runat="server" Text="Consultar Todas" 
-        Width="125px" />
+        Width="125px" OnClick="Button1_Click" />
 </p>
 <asp:Button ID="Button3" runat="server" Text="Agregar" OnClick="Button3_Click" />
 <asp:Button ID="Button4" runat="server" Text="Editar" />
@@ -34,7 +34,7 @@
     <asp:TextBox ID="TextBox4" runat="server" Enabled="False"></asp:TextBox>
     <br />
     <br />
-    <asp:Button ID="Button6" runat="server" Text="Guardar" Enabled="False" />
+    <asp:Button ID="Button6" runat="server" Text="Guardar" Enabled="False" OnClick="Button6_Click" />
     <br />
 </asp:Content>
 
