@@ -124,37 +124,37 @@ insert into sucursales values(seq_sucursales.NEXTVAL,'Jr. Lima 458');
 insert into sucursales values(seq_sucursales.NEXTVAL,'Av. Junin 123');
 insert into sucursales values(seq_sucursales.NEXTVAL,'Av. Larco 588');
 
-insert into empleados values(seq_empleados.NEXTVAL,8,'Juana Rosales Lopez');
-insert into empleados values(seq_empleados.NEXTVAL,9,'Pedro Espinoza Gutierrez');
-insert into empleados values(seq_empleados.NEXTVAL,10,'Marco Aurelio Gonzales');
+insert into empleados values(seq_empleados.NEXTVAL,1,'Juana Rosales Lopez');
+insert into empleados values(seq_empleados.NEXTVAL,2,'Pedro Espinoza Gutierrez');
+insert into empleados values(seq_empleados.NEXTVAL,3,'Marco Aurelio Gonzales');
 
-insert into compras_pelicula values(seq_compras.NEXTVAL,2,sysdate);
-insert into compras_pelicula values(seq_compras.NEXTVAL,3,'15/11/14');
-insert into compras_pelicula values(seq_compras.NEXTVAL,4,sysdate);
-insert into compras_pelicula values(seq_compras.NEXTVAL,2,'21/07/14');
-insert into compras_pelicula values(seq_compras.NEXTVAL,3,'16/05/14');
-insert into compras_pelicula values(seq_compras.NEXTVAL,4,sysdate);
+insert into compras_pelicula values(seq_compras.NEXTVAL,1,sysdate);
+insert into compras_pelicula values(seq_compras.NEXTVAL,2,'15/11/14');
+insert into compras_pelicula values(seq_compras.NEXTVAL,3,sysdate);
+insert into compras_pelicula values(seq_compras.NEXTVAL,1,'21/07/14');
+insert into compras_pelicula values(seq_compras.NEXTVAL,2,'16/05/14');
+insert into compras_pelicula values(seq_compras.NEXTVAL,3,sysdate);
 
-insert into ventas_pelicula values(seq_ventas.NEXTVAL,21,2,sysdate);
-insert into ventas_pelicula values(seq_ventas.NEXTVAL,22,3,'10/07/14');
-insert into ventas_pelicula values(seq_ventas.NEXTVAL,23,4,'14/10/14');
-insert into ventas_pelicula values(seq_ventas.NEXTVAL,24,2,sysdate);
-insert into ventas_pelicula values(seq_ventas.NEXTVAL,25,3,'08/09/14');
-insert into ventas_pelicula values(seq_ventas.NEXTVAL,21,2,sysdate);
+insert into ventas_pelicula values(seq_ventas.NEXTVAL,1,1,sysdate);
+insert into ventas_pelicula values(seq_ventas.NEXTVAL,2,2,'10/07/14');
+insert into ventas_pelicula values(seq_ventas.NEXTVAL,3,3,'14/10/14');
+insert into ventas_pelicula values(seq_ventas.NEXTVAL,4,2,sysdate);
+insert into ventas_pelicula values(seq_ventas.NEXTVAL,5,1,'08/09/14');
+insert into ventas_pelicula values(seq_ventas.NEXTVAL,2,3,sysdate);
 
-insert into alquileres_pelicula values(seq_alquileres.NEXTVAL,21,2,'15/01/14');
-insert into alquileres_pelicula values(seq_alquileres.NEXTVAL,22,3,'10/02/14');
-insert into alquileres_pelicula values(seq_alquileres.NEXTVAL,23,4,'01/12/14');
-insert into alquileres_pelicula values(seq_alquileres.NEXTVAL,24,2,sysdate);
-insert into alquileres_pelicula values(seq_alquileres.NEXTVAL,25,3,'27/06/14');
-insert into alquileres_pelicula values(seq_alquileres.NEXTVAL,22,4,sysdate);
+insert into alquileres_pelicula values(seq_alquileres.NEXTVAL,1,1,'15/01/14');
+insert into alquileres_pelicula values(seq_alquileres.NEXTVAL,2,2,'10/02/14');
+insert into alquileres_pelicula values(seq_alquileres.NEXTVAL,3,3,'01/12/14');
+insert into alquileres_pelicula values(seq_alquileres.NEXTVAL,4,1,sysdate);
+insert into alquileres_pelicula values(seq_alquileres.NEXTVAL,5,2,'27/06/14');
+insert into alquileres_pelicula values(seq_alquileres.NEXTVAL,2,3,sysdate);
 
-insert into detalles_venta_pelicula values(seq_det_venta.NEXTVAL,2,21,1);
-insert into detalles_venta_pelicula values(seq_det_venta.NEXTVAL,3,22,1);
-insert into detalles_venta_pelicula values(seq_det_venta.NEXTVAL,4,23,1);
-insert into detalles_venta_pelicula values(seq_det_venta.NEXTVAL,5,24,1);
-insert into detalles_venta_pelicula values(seq_det_venta.NEXTVAL,3,25,1);
-insert into detalles_venta_pelicula values(seq_det_venta.NEXTVAL,6,23,1);
+insert into detalles_venta_pelicula values(seq_det_venta.NEXTVAL,1,1,1);
+insert into detalles_venta_pelicula values(seq_det_venta.NEXTVAL,2,2,1);
+insert into detalles_venta_pelicula values(seq_det_venta.NEXTVAL,3,3,1);
+insert into detalles_venta_pelicula values(seq_det_venta.NEXTVAL,4,4,1);
+insert into detalles_venta_pelicula values(seq_det_venta.NEXTVAL,5,5,1);
+insert into detalles_venta_pelicula values(seq_det_venta.NEXTVAL,6,3,1);
 
 insert into detalles_alquiler_pelicula values(seq_det_alquiler.NEXTVAL,21,2,1);
 insert into detalles_alquiler_pelicula values(seq_det_alquiler.NEXTVAL,22,3,1);
