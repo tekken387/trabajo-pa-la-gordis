@@ -170,6 +170,3 @@ insert into detalles_compra_pelicula values(seq_det_compra.NEXTVAL,4,4,5);
 insert into detalles_compra_pelicula values(seq_det_compra.NEXTVAL,5,5,5);
 insert into detalles_compra_pelicula values(seq_det_compra.NEXTVAL,6,4,5);
 
-
- 
-
