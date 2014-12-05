@@ -70,52 +70,42 @@ CREATE TABLE Detalles_compra_pelicula (
 create sequence seq_peliculas
 increment by 1
 start with 1;
-min value 1;
 
 create sequence seq_socios
 increment by 1
 start with 1;
-min value 1;
 
 create sequence seq_sucursales
 increment by 1
 start with 1;
-min value 1;
 
 create sequence seq_empleados
 increment by 1
 start with 1;
-min value 1;
 
 create sequence seq_compras
 increment by 1
 start with 1;
-min value 1;
 
 create sequence seq_ventas
 increment by 1
 start with 1;
-min value 1;
 
 create sequence seq_alquileres
 increment by 1
 start with 1;
-min value 1;
 
 create sequence seq_det_venta
 increment by 1
 start with 1;
-min value 1;
 
 create sequence seq_det_alquiler
 increment by 1
 start with 1;
-min value 1;
 
 create sequence seq_det_compra
 increment by 1
 start with 1;
-min value 1;
 
 
 insert into peliculas values(seq_peliculas.NEXTVAL,'SAW',25.50,5);
