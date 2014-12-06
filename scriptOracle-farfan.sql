@@ -274,11 +274,57 @@ begin
  end if;
 end ActualizaStock_Compra;
 
+create or replace trigger AvisoStock
+before insert or delete or update 
+on detalles_compra_pelicula
+for each row
+begin
+ if inserting then
+  update peliculas set stock=stock-:new.cantidad
+  where idpelicula=:new.idpelicula;
+ end if;
+  
+ if updating then
+  update peliculas set stock=stock+:new.cantidad
+  where idpelicula=:new.idpelicula;
+  
+  update peliculas set stock=stock-:old.cantidad
+  where idpelicula=:old.idpelicula;
+ end if;
+ 
+ if deleting then
+  update peliculas set stock=stock+:old.cantidad
+  where idpelicula=:old.idpelicula;
+ end if;
+end AvisoStock;
 
+
+--pelicula q mas ejemplares se ha vendido
+create view masEjmplares
+as
+select p.idpelicula,sum(d.cantidad) as cantidad
+from peliculas p, detalles_venta_pelicula d
+where d.idpelicula=p.idpelicula
+group by p.idpelicula
+having sum(d.cantidad)=(select max(sum(d.cantidad))
+                  from peliculas p, detalles_venta_pelicula d
+                  where d.idpelicula=p.idpelicula
+                  group by p.idpelicula);
+                  
+--pelicula mas vendida
 create view masVendida
 as
-select nombre 
-from pelicula
+select p.idpelicula,count(*) as cantidad
+from peliculas p, detalles_venta_pelicula d
+where d.idpelicula=p.idpelicula
+group by p.idpelicula
+having count(*)=(select max(count(*))
+                  from peliculas p, detalles_venta_pelicula d
+                  where d.idpelicula=p.idpelicula
+                  group by p.idpelicula);
+                  
+
+
 
 
 
