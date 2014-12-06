@@ -127,27 +127,28 @@ insert into sucursales values(seq_sucursales.NEXTVAL,'Av. Larco 588');
 insert into empleados values(seq_empleados.NEXTVAL,1,'Juana Rosales Lopez');
 insert into empleados values(seq_empleados.NEXTVAL,2,'Pedro Espinoza Gutierrez');
 insert into empleados values(seq_empleados.NEXTVAL,3,'Marco Aurelio Gonzales');
+insert into empleados values(seq_empleados.NEXTVAL,1,'Miguel Soto');
 
-insert into compras_pelicula values(seq_compras.NEXTVAL,1,sysdate);
-insert into compras_pelicula values(seq_compras.NEXTVAL,2,'15/11/14');
-insert into compras_pelicula values(seq_compras.NEXTVAL,3,sysdate);
-insert into compras_pelicula values(seq_compras.NEXTVAL,1,'21/07/14');
-insert into compras_pelicula values(seq_compras.NEXTVAL,2,'16/05/14');
-insert into compras_pelicula values(seq_compras.NEXTVAL,3,sysdate);
+insert into compras_pelicula values(seq_compras.NEXTVAL,21,sysdate);
+insert into compras_pelicula values(seq_compras.NEXTVAL,21,'15/11/14');
+insert into compras_pelicula values(seq_compras.NEXTVAL,21,sysdate);
+insert into compras_pelicula values(seq_compras.NEXTVAL,21,'21/07/14');
+insert into compras_pelicula values(seq_compras.NEXTVAL,21,'16/05/14');
+insert into compras_pelicula values(seq_compras.NEXTVAL,21,sysdate);
 
 insert into ventas_pelicula values(seq_ventas.NEXTVAL,1,1,sysdate);
 insert into ventas_pelicula values(seq_ventas.NEXTVAL,2,2,'10/07/14');
 insert into ventas_pelicula values(seq_ventas.NEXTVAL,3,3,'14/10/14');
-insert into ventas_pelicula values(seq_ventas.NEXTVAL,4,2,sysdate);
+insert into ventas_pelicula values(seq_ventas.NEXTVAL,4,21,sysdate);
 insert into ventas_pelicula values(seq_ventas.NEXTVAL,5,1,'08/09/14');
-insert into ventas_pelicula values(seq_ventas.NEXTVAL,2,3,sysdate);
+insert into ventas_pelicula values(seq_ventas.NEXTVAL,2,2,sysdate);
 
-insert into alquileres_pelicula values(seq_alquileres.NEXTVAL,1,1,'15/01/14');
+insert into alquileres_pelicula values(seq_alquileres.NEXTVAL,1,21,'15/01/14');
 insert into alquileres_pelicula values(seq_alquileres.NEXTVAL,2,2,'10/02/14');
 insert into alquileres_pelicula values(seq_alquileres.NEXTVAL,3,3,'01/12/14');
-insert into alquileres_pelicula values(seq_alquileres.NEXTVAL,4,1,sysdate);
+insert into alquileres_pelicula values(seq_alquileres.NEXTVAL,4,21,sysdate);
 insert into alquileres_pelicula values(seq_alquileres.NEXTVAL,5,2,'27/06/14');
-insert into alquileres_pelicula values(seq_alquileres.NEXTVAL,2,3,sysdate);
+insert into alquileres_pelicula values(seq_alquileres.NEXTVAL,2,1,sysdate);
 
 insert into detalles_venta_pelicula values(seq_det_venta.NEXTVAL,1,1,1);
 insert into detalles_venta_pelicula values(seq_det_venta.NEXTVAL,2,2,1);
@@ -169,4 +170,33 @@ insert into detalles_compra_pelicula values(seq_det_compra.NEXTVAL,3,3,5);
 insert into detalles_compra_pelicula values(seq_det_compra.NEXTVAL,4,4,5);
 insert into detalles_compra_pelicula values(seq_det_compra.NEXTVAL,5,5,5);
 insert into detalles_compra_pelicula values(seq_det_compra.NEXTVAL,6,4,5);
+
+create user empleado1
+identified by emp1;
+
+create user empleado2
+identified by emp2;
+
+create user empleado3
+identified by emp3;
+
+create user admi
+identified by administrador;
+
+create role administrador;
+
+grant all privileges
+to administrador;
+
+grant administrador to admi;
+
+create role empleado;
+
+grant select, update
+on peliculas,socios,alquileres_pelicula,ventas_pelicula,detalles_alquiler_pelicula,detalles_venta_pelicula
+to empleado;
+
+grant empleado to empleado1;
+grant empleado to empleado2;
+grant empleado to empleado3;
 
