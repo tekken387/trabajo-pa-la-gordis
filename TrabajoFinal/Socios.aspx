@@ -8,31 +8,34 @@
     <p style="color: #000080; text-decoration: underline;">
         &nbsp;</p>
 <p style="color: #000080;">
-    <asp:Button ID="Button2" runat="server" Text="Buscar" />
+    <asp:Button ID="Button2" runat="server" Text="Buscar" OnClick="Button2_Click" style="height: 26px" />
 &nbsp;&nbsp;&nbsp;
     <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
 </p>
 <p style="color: #000080;">
-    <asp:ListBox ID="ListBox1" runat="server" Height="87px" Width="183px">
+    <asp:ListBox ID="ListBox1" runat="server" Height="87px" Width="183px" OnSelectedIndexChanged="ListBox1_SelectedIndexChanged">
     </asp:ListBox>
 &nbsp;<asp:Button ID="Button1" runat="server" Text="Consultar Todos" 
-        Width="125px" />
+        Width="125px" OnClick="Button1_Click" />
 </p>
-<asp:Button ID="Button3" runat="server" Text="Agregar" />
+<asp:Button ID="Button3" runat="server" Text="Agregar" OnClick="Button3_Click" />
 <asp:Button ID="Button4" runat="server" Text="Editar" />
 <asp:Button ID="Button5" runat="server" Text="Eliminar" />
 <br />
 <br />
     <br />
 <asp:Label ID="Label1" runat="server" Text="Nombre"></asp:Label>
-<asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+&nbsp;
+<asp:TextBox ID="TextBox2" runat="server" Enabled="False"></asp:TextBox>
     <br />
     <asp:Label ID="Label2" runat="server" Text="DNI"></asp:Label>
-&nbsp;&nbsp;
-    <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <asp:TextBox ID="TextBox3" runat="server" Enabled="False"></asp:TextBox>
+    <br />
+    CodSocio<asp:TextBox ID="TextBox4" runat="server" Enabled="False"></asp:TextBox>
 <br />
     <br />
-    <asp:Button ID="Button6" runat="server" Text="Guardar" />
+    <asp:Button ID="Button6" runat="server" Text="Guardar" OnClick="Button6_Click" />
     <br />
 <p style="text-decoration: underline; color: #000080">
     &nbsp;</p>

@@ -17,7 +17,7 @@
         Width="125px" OnClick="Button1_Click" />
 </p>
 <asp:Button ID="Button3" runat="server" Text="Agregar" OnClick="Button3_Click" />
-<asp:Button ID="Button4" runat="server" Text="Editar" />
+<asp:Button ID="Button4" runat="server" Text="Editar" OnClick="Button4_Click" />
 <asp:Button ID="Button5" runat="server" Text="Eliminar" />
 <br />
 <br />

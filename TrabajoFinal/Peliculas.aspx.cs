@@ -45,9 +45,7 @@ public partial class Peliculas : System.Web.UI.Page
         TextBox3.Enabled = false;
         TextBox4.Enabled = false;
         Button6.Enabled = false;
-
-
-
+        
         cargar_list();
         limpiar_cajas();
         
@@ -56,7 +54,7 @@ public partial class Peliculas : System.Web.UI.Page
     public void cargar_list()
     {
         var x = from pelis in vc.Peliculas
-                select new {pelis.idPelicula,pelis.Nombre,pelis.Precio };
+                select pelis;
 
         ListBox1.DataSource = x;
         ListBox1.DataTextField = "Nombre";
@@ -69,7 +67,6 @@ public partial class Peliculas : System.Web.UI.Page
         TextBox2.Text = "";
         TextBox3.Text = "";
         TextBox4.Text = "";
-        Button6.Text = "";
     }
 
     protected void Button1_Click(object sender, EventArgs e)
@@ -79,10 +76,10 @@ public partial class Peliculas : System.Web.UI.Page
     }
     protected void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
     {
-        int id = int.Parse(ListBox1.SelectedValue);
+        string nombre = (ListBox1.SelectedItem).ToString();
 
         var x = (from peliculas in vc.Peliculas
-                 where peliculas.idPelicula==id
+                 where peliculas.Nombre==nombre
                  select peliculas).First();
 
 
@@ -107,6 +104,10 @@ public partial class Peliculas : System.Web.UI.Page
         TextBox2.Text = x.Nombre;
         TextBox3.Text = x.Precio.ToString();
         TextBox4.Text = x.Stock.ToString();
+
+    }
+    protected void Button4_Click(object sender, EventArgs e)
+    {
 
     }
 }
