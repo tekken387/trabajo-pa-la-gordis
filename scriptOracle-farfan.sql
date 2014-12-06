@@ -200,3 +200,88 @@ grant empleado to empleado1;
 grant empleado to empleado2;
 grant empleado to empleado3;
 
+create or replace trigger ActualizaStock_Venta
+after insert or delete or update 
+on detalles_venta_pelicula
+for each row
+begin
+ if inserting then
+  update peliculas set stock=stock-:new.cantidad
+  where idpelicula=:new.idpelicula;
+ end if;
+  
+ if updating then
+  update peliculas set stock=stock+:new.cantidad
+  where idpelicula=:new.idpelicula;
+  
+  update peliculas set stock=stock-:old.cantidad
+  where idpelicula=:old.idpelicula;
+ end if;
+ 
+ if deleting then
+  update peliculas set stock=stock+:old.cantidad
+  where idpelicula=:old.idpelicula;
+ end if;
+ 
+end ActualizaStock_Venta;  
+
+
+create or replace trigger ActualizaStock_Alquiler
+after insert or delete or update 
+on detalles_alquiler_pelicula
+for each row
+begin
+ if inserting then
+  update peliculas set stock=stock-:new.cantidad
+  where idpelicula=:new.idpelicula;
+ end if;
+  
+ if updating then
+  update peliculas set stock=stock+:new.cantidad
+  where idpelicula=:new.idpelicula;
+  
+  update peliculas set stock=stock-:old.cantidad
+  where idpelicula=:old.idpelicula;
+ end if;
+ 
+ if deleting then
+  update peliculas set stock=stock+:old.cantidad
+  where idpelicula=:old.idpelicula;
+ end if;
+end ActualizaStock_Alquiler;  
+
+create or replace trigger ActualizaStock_Compra
+after insert or delete or update 
+on detalles_compra_pelicula
+for each row
+begin
+ if inserting then
+  update peliculas set stock=stock-:new.cantidad
+  where idpelicula=:new.idpelicula;
+ end if;
+  
+ if updating then
+  update peliculas set stock=stock+:new.cantidad
+  where idpelicula=:new.idpelicula;
+  
+  update peliculas set stock=stock-:old.cantidad
+  where idpelicula=:old.idpelicula;
+ end if;
+ 
+ if deleting then
+  update peliculas set stock=stock+:old.cantidad
+  where idpelicula=:old.idpelicula;
+ end if;
+end ActualizaStock_Compra;
+
+
+create view masVendida
+as
+select nombre 
+from pelicula
+
+
+
+
+
+
