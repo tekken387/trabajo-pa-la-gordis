@@ -81,10 +81,32 @@ public partial class Peliculas : System.Web.UI.Page
     {
         int id = int.Parse(ListBox1.SelectedValue);
 
-        var x = from p1 in vc.Peliculas
-                      where p1.idPelicula.Equals(id)
-                      select p1;
-        
-        TextBox2.Text=x.i
+        var x = (from peliculas in vc.Peliculas
+                 where peliculas.idPelicula==id
+                 select peliculas).First();
+
+
+        TextBox2.Text = x.Nombre;
+        TextBox3.Text = x.Precio.ToString();
+        TextBox4.Text = x.Stock.ToString();
+
+    }
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+
+        ListBox1.Items.Clear();
+
+        string nombre = TextBox1.Text;
+
+        var x = (from peliculas in vc.Peliculas
+                 where peliculas.Nombre == nombre
+                 select peliculas).First();
+
+        ListBox1.Items.Add(x.Nombre);
+
+        TextBox2.Text = x.Nombre;
+        TextBox3.Text = x.Precio.ToString();
+        TextBox4.Text = x.Stock.ToString();
+
     }
 }

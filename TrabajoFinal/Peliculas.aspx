@@ -6,7 +6,7 @@
     <p style="color: #000080; text-decoration: underline;">
     PELICULAS</p>
 <p style="color: #000080;">
-    <asp:Button ID="Button2" runat="server" Text="Buscar" />
+    <asp:Button ID="Button2" runat="server" Text="Buscar" OnClick="Button2_Click" />
 &nbsp;&nbsp;&nbsp;
     <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
 </p>
