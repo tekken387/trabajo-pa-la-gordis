@@ -48,7 +48,6 @@ public partial class Ventas : System.Web.UI.Page
                  where cod.CodSocio == codsocio
                  select cod).First();
 
-        string fecha = TextBox3.Text;
         
         vp.Fecha_venta = DateTime.Today;
         vp.Socios = x;
@@ -74,6 +73,7 @@ public partial class Ventas : System.Web.UI.Page
         TextBox3.Text = "";
         TextBox4.Text = "";
         TextBox5.Text = "";
+        Button3.Enabled = true;
     }
 
     protected void Button5_Click(object sender, EventArgs e)
@@ -81,16 +81,20 @@ public partial class Ventas : System.Web.UI.Page
         limpiar_cajas();
 
         TextBox1.Enabled = true;
-        TextBox2.Enabled = true;
         TextBox3.Enabled = true;
         TextBox4.Enabled = true;
         TextBox5.Enabled = true;
+        ListBox1.Items.Clear();
 
     }
     protected void Button3_Click(object sender, EventArgs e)
     {
+        var aux = (from ventas in vc.Ventas_pelicula
+                     select ventas.idVenta).Max();
+
         var venta = (from ventas in vc.Ventas_pelicula
-                     select ventas).Last();
+                     where ventas.idVenta==aux
+                     select ventas).First();
 
         VideoclubModel.Detalles_venta_pelicula dp = new Detalles_venta_pelicula();
         int cantidad = int.Parse(TextBox4.Text);
@@ -100,7 +104,14 @@ public partial class Ventas : System.Web.UI.Page
                   where peli.idPelicula == idpeli
                   select peli).First();
 
-        
 
+        dp.Cantidad = cantidad;
+        dp.Peliculas = pe;
+        dp.Ventas_pelicula = venta;
+
+        vc.AddToDetalles_venta_pelicula(dp);
+        vc.SaveChanges();
+
+        ListBox1.Items.Add(dp.Peliculas.Nombre);
     }
 }
