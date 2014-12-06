@@ -311,6 +311,7 @@ having sum(d.cantidad)=(select max(sum(d.cantidad))
                   where d.idpelicula=p.idpelicula
                   group by p.idpelicula);
                   
+                  
 --pelicula mas vendida
 create view masVendida
 as
