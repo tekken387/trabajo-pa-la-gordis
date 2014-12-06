@@ -66,7 +66,7 @@ CREATE TABLE Detalles_compra_pelicula (
   CONSTRAINT fkdcp_pe FOREIGN KEY (idPelicula) REFERENCES Peliculas(idPelicula),
   CONSTRAINT fkdcp_comp FOREIGN KEY (idCompra) REFERENCES Compras_pelicula(idCompra));
   
-  
+--secuencias
 create sequence seq_peliculas
 increment by 1
 start with 1;
@@ -107,7 +107,7 @@ create sequence seq_det_compra
 increment by 1
 start with 1;
 
-
+--insertando en tablas
 insert into peliculas values(seq_peliculas.NEXTVAL,'SAW',25.50,5);
 insert into peliculas values(seq_peliculas.NEXTVAL,'Dracula',30.00,5);
 insert into peliculas values(seq_peliculas.NEXTVAL,'Lord of the rings',15.50,5);
@@ -171,6 +171,8 @@ insert into detalles_compra_pelicula values(seq_det_compra.NEXTVAL,4,4,5);
 insert into detalles_compra_pelicula values(seq_det_compra.NEXTVAL,5,5,5);
 insert into detalles_compra_pelicula values(seq_det_compra.NEXTVAL,6,4,5);
 
+
+--usuarios y roles
 create user empleado1
 identified by emp1;
 
@@ -200,6 +202,7 @@ grant empleado to empleado1;
 grant empleado to empleado2;
 grant empleado to empleado3;
 
+--actualiza stock venta
 create or replace trigger ActualizaStock_Venta
 after insert or delete or update 
 on detalles_venta_pelicula
@@ -225,7 +228,7 @@ begin
  
 end ActualizaStock_Venta;  
 
-
+--actualiza stock alquiler
 create or replace trigger ActualizaStock_Alquiler
 after insert or delete or update 
 on detalles_alquiler_pelicula
@@ -250,6 +253,7 @@ begin
  end if;
 end ActualizaStock_Alquiler;  
 
+--actualiza stock compras
 create or replace trigger ActualizaStock_Compra
 after insert or delete or update 
 on detalles_compra_pelicula
@@ -274,6 +278,7 @@ begin
  end if;
 end ActualizaStock_Compra;
 
+--avisa cuando se esta acabando el stock de peliculas
 create or replace trigger AvisoStock
 before insert or delete or update 
 on detalles_compra_pelicula
@@ -298,6 +303,42 @@ begin
  end if;
 end AvisoStock;
 
+--actualizar total ventas
+create or replace trigger TotalVentas
+before insert or delete or update 
+on detalles_venta_pelicula
+for each row
+begin
+ if inserting then
+  update ventas_pelicula
+  set total=total+(select(:new.cantidad*p.precio)
+            from peliculas p
+            where p.idpelicula=:new.idpelicula)
+  where idventa=:new.idventa;
+ end if;
+  
+ if updating then
+ update ventas_pelicula
+  set total=total+(select(:new.cantidad*p.precio)
+            from peliculas p
+            where p.idpelicula=:new.idpelicula)
+  where idventa=:new.idventa;
+  
+   update ventas_pelicula
+  set total=total-(select(:old.cantidad*p.precio)
+            from peliculas p
+            where p.idpelicula=:old.idpelicula)
+  where idventa=:old.idventa;
+ end if;
+ 
+ if deleting then
+   update ventas_pelicula
+  set total=total-(select(:old.cantidad*p.precio)
+            from peliculas p
+            where p.idpelicula=:old.idpelicula)
+  where idventa=:old.idventa;
+ end if;
+end TotalVentas;
 
 --pelicula q mas ejemplares se ha vendido
 create view masEjmplares
@@ -324,7 +365,6 @@ having count(*)=(select max(count(*))
                   where d.idpelicula=p.idpelicula
                   group by p.idpelicula);
                   
-
 
 
 
